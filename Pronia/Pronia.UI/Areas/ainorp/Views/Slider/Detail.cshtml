@@ -1,0 +1,13 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<img src="@Model.ImageUrl" alt="Image" width="100px" />
+<p>@Model.Title</p>
+<p>@Model.Description</p>
+<p>@Model.Offer</p>
+
+<a asp-action="Index" class="btn btn-secondary">GO Back</a>
+
+

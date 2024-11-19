@@ -1,0 +1,58 @@
+﻿@model List<Slider>
+@{
+    ViewData["Title"] = "Index";
+    int count = 1;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Slider CRUD</div>
+            </div>
+            <div class="card-body">
+                <div class="card-sub">
+                    <a asp-action="Create" class="btn btn-success">CREATE</a>
+                </div>
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Offer</th>
+                            <th scope="col">Arrangements</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var slider in Model)
+                        {
+                            <tr>
+                                <td>@count</td>
+                                <td>
+                                    <img src="@slider.ImageUrl" alt="Image Url" width="50px" />
+                                </td>
+                                <td>@slider.Title</td>
+                                <td>@slider.Description</td>
+                                <td>@slider.Offer</td>
+                                <td>
+                                    <a asp-area="ainorp" asp-action="Detail" asp-route-id="@slider.Id" class="text-primary">
+                                        <i class="fa-solid fa-circle-question"></i>
+                                    </a>
+                                    <a asp-area="ainorp" asp-action="Edit" asp-route-id="@slider.Id" class="text-warning">
+                                        <i class="fa-solid fa-marker"></i>
+                                    </a>
+                                    <a asp-area="ainorp" asp-action="Remove" asp-route-id="@slider.Id" class="text-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
