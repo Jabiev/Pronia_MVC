@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pronia.Domain.Entities;
+using Pronia.Domain.Entities.Base;
 
 namespace Pronia.Data.Contexts;
 
@@ -21,16 +22,15 @@ public class ProniaDbContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    //public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    //{
-    //    foreach (var entry in ChangeTracker.Entries<BaseEntity>())
-    //    {
-    //        if(entry.State == EntityState.Added)
-    //        {
-    //            entry.Entity.CreatedDate = DateTime.UtcNow;
-    //            entry.Entity.UpdatedDate = default;
-    //        }
-    //    }
-    //    return base.SaveChangesAsync(cancellationToken);
-    //}
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+        {
+            if (entry.State == EntityState.Added)
+                entry.Entity.CreatedDate = DateTime.UtcNow;
+            if (entry.State == EntityState.Modified)
+                entry.Entity.UpdatedDate = DateTime.UtcNow;
+        }
+        return base.SaveChangesAsync(cancellationToken);
+    }
 }
