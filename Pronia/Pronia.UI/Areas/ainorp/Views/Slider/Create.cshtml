@@ -10,6 +10,13 @@
                 <div class="card-title">Form Elements</div>
             </div>
             <form method="post">
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <div class="alert alert-danger text-danger">@error.ErrorMessage</div>
+                    }
+                }
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
@@ -45,7 +52,7 @@
                     </div>
                     <div class="card-action">
                         <input type="submit" class="btn btn-success" value="SAVE"></input>
-                        <button class="btn btn-danger">Cancel</button>
+                        <button asp-action="Index" class="btn btn-danger">Cancel</button>
                     </div>
                 </div>
             </form>

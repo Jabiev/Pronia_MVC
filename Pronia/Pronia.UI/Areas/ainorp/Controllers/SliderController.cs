@@ -34,7 +34,15 @@ public class SliderController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(Slider slider)
     {
-        if(!ModelState.IsValid) 
+        var sliderCount = await _context.Sliders.CountAsync();
+
+        if (sliderCount >= 5)
+        {
+            ModelState.AddModelError(string.Empty, "Don't EXCEED Slider limit! You may create a slider max 5");
+            return View(slider);
+        }
+
+        if (!ModelState.IsValid) 
             return View();
         await _context.Sliders.AddAsync(slider);
         await _context.SaveChangesAsync();
