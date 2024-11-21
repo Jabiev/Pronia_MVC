@@ -1,4 +1,4 @@
-﻿@model Slider
+﻿@model SliderViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -9,23 +9,29 @@
             <div class="card-header">
                 <div class="card-title">Form Elements</div>
             </div>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 @if (!ViewData.ModelState.IsValid)
                 {
                     foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
                     {
-                        <div class="alert alert-danger text-danger">@error.ErrorMessage</div>
+                        if (error.ErrorMessage.Equals("Don't EXCEED Slider limit! You may create a slider max 5"))
+                        {
+                            <div class="alert alert-danger text-danger">@error.ErrorMessage</div>
+                            <button asp-action="Index" class="btn btn-danger">Cancel</button>
+                            return;
+                        }
                     }
                 }
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
-                                <label asp-for="ImageUrl">Image Url</label>
-                                <input asp-for="ImageUrl"
+                                <label asp-for="Image"></label>
+                                <input asp-for="Image"
                                        class="form-control"
-                                       placeholder="Enter Image Url" />
-                                <span class="text-danger" asp-validation-for="ImageUrl"></span>
+                                       placeholder="Enter Image Url"
+                                       accept="image/*" />
+                                <span class="text-danger" asp-validation-for="Image"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Title"></label>
