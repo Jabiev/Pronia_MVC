@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
+    <!-- Favicon -->
+    <link rel="shortcut icon"
+          type="image/x-icon"
+          href="~/front/assets/images/favicon.ico" />
+
+    <!-- CSS
+    ============================================ -->
+
+
+    <style>
+        .account-box {
+            background-image: url("~/front/assets/images/identity/a-serene-mountain-lake-with-lush-greenery-and-a-clear-blue-sky-photo.jpg") background-size: cover;
+            background-position: center;
+            background-repeat: repeat-y;
+            background-color: white;
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            opacity: .8;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .registration-container {
+            display: flex;
+            width: 800px;
+            height: 450px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 20px;
+            background-color: #0073e6;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .form-section h2 {
+                margin-bottom: 20px;
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                color: #fff;
+            }
+
+        /* Input grubu */
+        .input-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+            .input-group label {
+                display: block;
+                margin-bottom: 5px;
+                color: #fff;
+                font-size: 14px;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #333;
+                margin-bottom: 5px;
+            }
+
+        .text-danger {
+            font-size: 12px;
+            color: #ff6961;
+        }
+
+        .btn {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            background-color: #ffb400;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn:hover {
+                background-color: #e6a200;
+            }
+
+        /* Linkler */
+        .text-link {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .text-link:hover {
+                text-decoration: underline;
+            }
+
+        .info-section {
+            flex: 1;
+            padding: 30px;
+            background-color: #ffffff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+            .info-section h3 {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                line-height: 1.4;
+                color: #222;
+            }
+
+            .info-section ul {
+                list-style: none;
+                padding: 0;
+                margin-bottom: 20px;
+            }
+
+                .info-section ul li {
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                    padding-left: 20px;
+                    position: relative;
+                }
+
+                    .info-section ul li:before {
+                        content: "✔";
+                        color: #0073e6;
+                        font-size: 14px;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                    }
+
+            /* Alt bilgi */
+            .info-section p {
+                font-size: 12px;
+                color: #555;
+                line-height: 1.4;
+                margin-top: 10px;
+            }
+    </style>
+
+    <link rel="stylesheet" href="~/front/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/front/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/front/assets/css/Pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="~/front/assets/css/animate.min.css" />
+    <link rel="stylesheet" href="~/front/assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="~/front/assets/css/nice-select.css" />
+    <link rel="stylesheet" href="~/front/assets/css/magnific-popup.min.css" />
+    <link rel="stylesheet" href="~/front/assets/css/ion.rangeSlider.min.css" />
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="~/front/assets/css/style.css" />
+</head>
+<body>
+    <div class="account-container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Global Vendor, plugins JS -->
+    <!-- JS Files
+    ============================================ -->
+
+    <script src="~/front/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="~/front/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="~/front/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="~/front/assets/js/vendor/jquery.waypoints.js"></script>
+    <script src="~/front/assets/js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="~/front/assets/js/plugins/wow.min.js"></script>
+    <script src="~/front/assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="~/front/assets/js/plugins/jquery.nice-select.js"></script>
+    <script src="~/front/assets/js/plugins/parallax.min.js"></script>
+    <script src="~/front/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="~/front/assets/js/plugins/tippy.min.js"></script>
+    <script src="~/front/assets/js/plugins/ion.rangeSlider.min.js"></script>
+    <script src="~/front/assets/js/plugins/mailchimp-ajax.js"></script>
+    <script src="~/front/assets/js/plugins/jquery.counterup.js"></script>
+
+    <!--Main JS (Common Activation Codes)-->
+    <script src="~/front/assets/js/main.js"></script>
+</body>
+</html>

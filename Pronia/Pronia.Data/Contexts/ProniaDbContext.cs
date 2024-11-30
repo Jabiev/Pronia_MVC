@@ -1,12 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Pronia.Domain.Entities;
 using Pronia.Domain.Entities.Base;
 
 namespace Pronia.Data.Contexts;
 
-public class ProniaDbContext : DbContext
+public class ProniaDbContext : IdentityDbContext<User>
 {
-    public ProniaDbContext(DbContextOptions options) : base(options)
+    public ProniaDbContext(DbContextOptions<ProniaDbContext> options) : base(options)
     {
     }
     public DbSet<Biography> Biography { get; set; } = null!;
