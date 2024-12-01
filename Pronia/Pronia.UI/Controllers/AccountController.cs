@@ -6,22 +6,17 @@ using Pronia.UI.ViewModels;
 
 namespace Pronia.UI.Controllers;
 
-public class AccountController : Controller
+public class AccountController(SignInManager<User> signInManager,
+        UserManager<User> userManager,
+        ProniaDbContext context) : Controller
 {
-    private readonly SignInManager<User> _signInManager;
-    private readonly ProniaDbContext _context;
-    private readonly UserManager<User> _userManager;
-
-    public AccountController(SignInManager<User> signInManager,
-        UserManager<User> userManager, ProniaDbContext context)
-    {
-        _signInManager = signInManager;
-        _userManager = userManager;
-        _context = context;
-    }
+    private readonly SignInManager<User> _signInManager = signInManager;
+    private readonly ProniaDbContext _context = context;
+    private readonly UserManager<User> _userManager = userManager;
 
     public IActionResult Register() => View();
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
         if (ModelState.IsValid)
@@ -30,7 +25,7 @@ public class AccountController : Controller
             {
                 FirstName = model.Name,
                 Email = model.Email,
-                UserName = model.Email
+                UserName = model.Email,
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -46,10 +41,16 @@ public class AccountController : Controller
     }
     public IActionResult Login() => View();
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (ModelState.IsValid)
         {
+            if ((await _userManager.FindByEmailAsync(model.Email)) is null)
+            {
+                ModelState.AddModelError("", "Not Found");
+                return View(model);
+            }
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
                 return RedirectToAction("Index", "Home");
@@ -61,7 +62,8 @@ public class AccountController : Controller
         }
         return View(model);
     }
-
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
