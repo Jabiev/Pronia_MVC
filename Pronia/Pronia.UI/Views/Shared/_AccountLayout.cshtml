@@ -28,6 +28,7 @@
             width: 100%;
             opacity: .8;
         }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -37,6 +38,35 @@
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
+            /* background-image: url(@Url.Content("~/front/assets/images/identity/a-serene-mountain-lake-with-lush-greenery-and-a-clear-blue-sky-photo.jpg") );
+            */
+            /* background-size: cover; */
+            /* background-position: center; */
+            /* background-repeat: no-repeat; */
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .content {
+            position: relative;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            z-index: 1;
+        }
+
+        h1 {
+            margin-top: 20%;
+            font-size: 3rem;
         }
 
         .registration-container {
@@ -189,6 +219,23 @@
 <body>
     <div class="account-container">
         <main role="main" class="pb-3">
+            <video autoplay muted loop>
+                <source src="@Url.Content("~/front/assets/videos/Range Rover Sport _ Stealth Pack - Land Rover (1080p, h264, youtube).mp4")" type="video/mp4">
+                Your browser doesn't support this format.
+            </video>
+
+            <div class="content">
+                <video autoplay muted loop>
+                    <source src="@Url.Content("~/front/assets/videos/Range Rover Sport _ Stealth Pack - Land Rover (1080p, h264, youtube).mp4")" type="video/mp4">
+                    Your browser doesn't support this format.
+                </video>
+
+                <div class="content">
+                    <h1></h1>
+                </div>
+                <h1></h1>
+                <p>R A N G E   R O V E R</p>
+            </div>
             @RenderBody()
         </main>
     </div>
